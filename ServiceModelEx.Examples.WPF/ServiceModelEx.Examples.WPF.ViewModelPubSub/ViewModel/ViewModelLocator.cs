@@ -15,6 +15,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using ServiceModelEx.Examples.WPF.ViewModelPubSub.Publisher.ViewModels;
 
 namespace ServiceModelEx.Examples.WPF.ViewModelPubSub.ViewModel
 {
@@ -43,6 +44,7 @@ namespace ServiceModelEx.Examples.WPF.ViewModelPubSub.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<PublisherViewModel>();
         }
 
         public MainViewModel Main
