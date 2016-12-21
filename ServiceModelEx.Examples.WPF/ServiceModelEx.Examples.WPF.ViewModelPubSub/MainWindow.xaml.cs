@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace ServiceModelEx.Examples.WPF.ViewModelPubSub.Views
+namespace ServiceModelEx.Examples.WPF.ViewModelPubSub
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
