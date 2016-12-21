@@ -54,6 +54,14 @@ namespace ServiceModelEx.Examples.WPF.ViewModelPubSub.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
+
+        public PublisherViewModel Publisher
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<PublisherViewModel>();
+            }
+        }
         
         public static void Cleanup()
         {

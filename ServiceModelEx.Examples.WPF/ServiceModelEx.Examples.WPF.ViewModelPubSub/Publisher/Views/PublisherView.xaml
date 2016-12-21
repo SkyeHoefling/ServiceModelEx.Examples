@@ -7,6 +7,8 @@
         Title="Publisher"
         Width="300"
         Height="300"
+        DataContext="{Binding Source={StaticResource Locator},
+                              Path=Publisher}"
         mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
@@ -30,17 +32,47 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Row="0"
                     Grid.Column="0"
-                    Content="Start Publisher Service" />
+                    Command="{Binding ToggleService}">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsServiceRunning}" Value="True">
+                                <Setter Property="Content" Value="Stop Publisher Service" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsServiceRunning}" Value="False">
+                                <Setter Property="Content" Value="Start Publisher Service" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
             <TextBlock Grid.Row="0"
                        Grid.Column="2"
                        VerticalAlignment="Center"
-                       Foreground="Red"
-                       Text="Not Running"
-                       TextAlignment="Center" />
+                       TextAlignment="Center">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsServiceRunning}" Value="True">
+                                <Setter Property="Text" Value="Active" />
+                                <Setter Property="Foreground" Value="Green" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsServiceRunning}" Value="False">
+                                <Setter Property="Text" Value="Not Active" />
+                                <Setter Property="Foreground" Value="Red" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
             <Button Grid.Row="2"
                     Grid.Column="0"
+                    Command="{Binding PublishMessage}"
+                    CommandParameter="{Binding ElementName=PublishMessagePayload,
+                                               Path=Text}"
                     Content="Publish Message" />
-            <TextBox Grid.Row="2"
+            <TextBox x:Name="PublishMessagePayload"
+                     Grid.Row="2"
                      Grid.Column="2"
                      Width="Auto" />
         </Grid>
@@ -48,6 +80,7 @@
                  Margin="10,0,10,10"
                  HorizontalScrollBarVisibility="Auto"
                  IsReadOnly="True"
+                 Text="{Binding Console}"
                  TextWrapping="Wrap"
                  VerticalScrollBarVisibility="Auto" />
     </Grid>
