@@ -1,4 +1,8 @@
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using System.Windows.Input;
+using System;
 
 namespace ServiceModelEx.Examples.WPF.ViewModelPubSub.ViewModel
 {
@@ -21,14 +25,29 @@ namespace ServiceModelEx.Examples.WPF.ViewModelPubSub.ViewModel
         /// </summary>
         public MainViewModel()
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+            if (IsInDesignMode)
+            {
+                // Code runs in Blend --> create design time data.
+            }
+            else
+            {
+                Messenger.Default.Register<NotificationMessage>(this, (m) =>
+                {
+                    if (m.Notification == "OpenPublisher")
+                    {
+                        Messenger.Default.Send(new NotificationMessage("Publisher"));
+                        var publisher = new Publisher.Views.PublisherView();
+                        publisher.Show();
+                    }
+                });
+            }
+        }
+
+        public ICommand ShowPublisherWindow => new RelayCommand(OnShowPublisherWindow);//() => Messenger.Default.Send(new NotificationMessage("OpenPublisher")));
+
+        private void OnShowPublisherWindow()
+        {
+            Messenger.Default.Send(new NotificationMessage("OpenPublisher"));
         }
     }
 }

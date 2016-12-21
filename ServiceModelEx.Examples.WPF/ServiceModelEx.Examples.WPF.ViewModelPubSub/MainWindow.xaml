@@ -7,6 +7,8 @@
         Title="MainWindow"
         Width="525"
         Height="350"
+        DataContext="{Binding Source={StaticResource Locator},
+                              Path=Main}"
         mc:Ignorable="d">
     <Window.Resources>
         <Style x:Key="Title" TargetType="{x:Type TextBlock}">
@@ -30,7 +32,9 @@
                 <ColumnDefinition Width="6*" />
                 <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" Content="Start Publisher App" />
+            <Button Grid.Column="1"
+                    Command="{Binding ShowPublisherWindow}"
+                    Content="Start Publisher App" />
         </Grid>
 
         <DataGrid Grid.Row="2"
