@@ -10,13 +10,6 @@
         DataContext="{Binding Source={StaticResource Locator},
                               Path=Main}"
         mc:Ignorable="d">
-    <Window.Resources>
-        <Style x:Key="Title" TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="Foreground" Value="Black" />
-            <Setter Property="TextAlignment" Value="Center" />
-        </Style>
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />

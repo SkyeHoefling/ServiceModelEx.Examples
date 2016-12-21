@@ -8,6 +8,11 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <Style x:Key="Title" TargetType="{x:Type TextBlock}">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="TextAlignment" Value="Center" />
+            </Style>
             <vm:ViewModelLocator xmlns:vm="clr-namespace:ServiceModelEx.Examples.WPF.ViewModelPubSub.ViewModel"
                                  x:Key="Locator"
                                  d:IsDataSource="True" />

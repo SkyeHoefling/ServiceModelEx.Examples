@@ -2,7 +2,6 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System.Windows.Input;
-using System;
 
 namespace ServiceModelEx.Examples.WPF.ViewModelPubSub.ViewModel
 {
