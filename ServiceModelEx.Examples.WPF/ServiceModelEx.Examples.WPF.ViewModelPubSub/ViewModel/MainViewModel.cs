@@ -1,6 +1,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using ServiceModelEx.Examples.WPF.ViewModelPubSub.Publisher.Views;
 using System.Windows.Input;
 
 namespace ServiceModelEx.Examples.WPF.ViewModelPubSub.ViewModel
@@ -19,6 +20,8 @@ namespace ServiceModelEx.Examples.WPF.ViewModelPubSub.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        private PublisherView publisherInstance;
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
@@ -34,9 +37,12 @@ namespace ServiceModelEx.Examples.WPF.ViewModelPubSub.ViewModel
                 {
                     if (m.Notification == "OpenPublisher")
                     {
+                        if (publisherInstance != null && publisherInstance.IsVisible) return;
+
                         Messenger.Default.Send(new NotificationMessage("Publisher"));
-                        var publisher = new Publisher.Views.PublisherView();
-                        publisher.Show();
+                        publisherInstance = publisherInstance ?? new PublisherView();
+                        publisherInstance.Closed += (s, e) => publisherInstance = null;
+                        publisherInstance.Show();
                     }
                 });
             }
