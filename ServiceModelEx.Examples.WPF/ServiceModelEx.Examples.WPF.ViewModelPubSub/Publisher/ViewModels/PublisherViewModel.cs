@@ -1,6 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using PostSharp.Patterns.Model;
 using ServiceModelEx;
 using ServiceModelEx.Examples.PubSub.Contracts.ServiceContracts;
 using ServiceModelEx.Examples.PubSub.Services;
