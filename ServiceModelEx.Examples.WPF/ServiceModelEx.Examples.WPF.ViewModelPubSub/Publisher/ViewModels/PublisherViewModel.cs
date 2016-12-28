@@ -71,7 +71,13 @@ namespace ServiceModelEx.Examples.WPF.ViewModelPubSub.Publisher.ViewModels
         {
             if (string.IsNullOrWhiteSpace(payload)) return;
 
-            Console += $"{DateTime.Now.ToString()} : payload";
+            if (host != null)
+            {
+                var proxy = DiscoveryPublishService<IFooBarServiceContract>.CreateChannel();
+                proxy.Foo(payload);
+
+                Console += $"{DateTime.Now.ToString()} : payload";
+            }
         }
     }
 }

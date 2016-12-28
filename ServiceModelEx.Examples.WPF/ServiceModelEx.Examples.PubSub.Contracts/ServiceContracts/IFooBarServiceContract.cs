@@ -6,6 +6,6 @@ namespace ServiceModelEx.Examples.PubSub.Contracts.ServiceContracts
     public interface IFooBarServiceContract
     {
         [OperationContract(IsOneWay = true)]
-        void Foo();
+        void Foo(string payload);
     }
 }
