@@ -1,15 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using ServiceModelEx;
 using ServiceModelEx.Examples.PubSub.Contracts.ServiceContracts;
 using ServiceModelEx.Examples.PubSub.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace ServiceModelEx.Examples.WPF.ViewModelPubSub.Publisher.ViewModels
@@ -57,14 +51,16 @@ namespace ServiceModelEx.Examples.WPF.ViewModelPubSub.Publisher.ViewModels
         private ServiceHost host;
         private void OnToggleService()
         {
-            if(host != null)
+            if (host != null)
             {
                 host.Close();
                 host = null;
             }
-
-            host = DiscoveryPublishService<IFooBarServiceContract>.CreateHost<FooBarService>();
-            host.Open();
+            else
+            {
+                host = DiscoveryPublishService<IFooBarServiceContract>.CreateHost<FooBarService>();
+                host.Open();
+            }
 
             IsServiceRunning = !IsServiceRunning;
         }
